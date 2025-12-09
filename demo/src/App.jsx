@@ -16,12 +16,16 @@ function App() {
     {id:1003,name:"charger", price:2000},
     {id:1004,name:"table", price:25000},
     {id:1005,name:"mouse", price:400},
-    {id:1006,name:"pendrive", price:1400}
+    {id:1006,name:"pendrive", price:1400},
+    {id:1007,name:"Remotes", price:2400}
+    
+    
+    
   ];
 
   return (
     <>
-      <Greeting name="Praven" city="Hyderabad" />
+      <Greeting name="Praveen" city="Hyderabad" />
       <TestData nos = {data} />
       <Display products = {products}/>
     </>
