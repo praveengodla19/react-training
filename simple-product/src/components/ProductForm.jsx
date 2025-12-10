@@ -2,7 +2,9 @@ import React, { useState } from "react";
 
 export default function ProductForm({ onSubmit }) {
   // controlled inputs (state)
-  const [form, setForm] = useState({ name: "", price: "", qty: "" });
+  const [form, setForm] = useState(
+    { name: "", price: "", qty: "" }
+    );
 
   const handleChange = (e) => {
     const { name, value } = e.target;

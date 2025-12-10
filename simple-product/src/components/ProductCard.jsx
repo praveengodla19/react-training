@@ -1,19 +1,22 @@
 import React from "react";
 
 export default function ProductCard({ product, onDelete }) {
-  // props used here: product object and onDelete callback
   return (
     <div className="card">
       <h3>{product.name}</h3>
-      <p>Price: ₹{product.price}</p>
-      <p>Qty: {product.qty}</p>
 
-      {/* conditional rendering: only show delete if qty === 0 as example */}
-      {product.qty === 0 ? (
-        <button onClick={onDelete} className="danger">Delete</button>
-      ) : (
-        <button onClick={() => alert("Can't delete when qty > 0")}>Delete</button>
-      )}
+      <p className="price">₹ {product.price}</p>
+      <p className="qty">Qty: {product.qty}</p>
+
+      {/* Optional: muted meta text */}
+      <p className="meta">Product ID: {product.id}</p>
+
+      <button
+        onClick={onDelete}
+        className={product.qty === 0 ? "danger" : "danger"}
+      >
+        {product.qty === 0 ? "Delete" : "Cannot Delete"}
+      </button>
     </div>
   );
 }
