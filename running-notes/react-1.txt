@@ -1,0 +1,7 @@
+Component is a reacts reusable, independent piece of UI that we can use to build a full application
+
+react ---> Single page application
+
+1. faster in response and also in navigation
+
+2. Better UX 

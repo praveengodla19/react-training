@@ -1,0 +1,189 @@
+1. Optional Chaining -lets us safely access nested properties of an object without causing
+any errors (Execption)
+
+let user = null
+console.log(user.address.city)
+// Error
+console.log("This is after null value")
+
+
+(?.)-->represent optional chaining
+
+1. API responses - may not have all the values
+2. Objects may miss some nested propeties
+3. Arrays can be empty
+4. Functions may not exists
+5. Avoid long messy checks
+
+if ( user && user.address & user.address.city)
+	console.log(usr.address.city)
+}
+
+console.log(user?.address?.city)
+
+syntax:
+
+object?.property
+object?.method?.()
+object?.nested1?.nested2?.key
+
+
+let user= {
+	name: "Praveen",
+};
+
+user.login(); 
+user.login?.();
+
+let students = []
+console.log(students[0]?.name)
+
+
+Short Circuiting
+----------------
+
+if ( c1 && c2 && c3 && .....&& c20 ){
+
+}
+
+console.log( 0 && "Hello")
+
+Logical OR
+
+if ( c1 || c2 || c3 || .....|| c20 ){
+
+}
+
+
+Exceptions 
+-----------
+An exception is an runtime error which will abrupts the normal flow of execution
+
+Process of handling exceptions is called exception handling
+
+try{
+
+
+}
+catch(){
+
+
+}
+
+finally {
+	//close
+}
+
+
+Error  --> 
+name --> type of the error
+message --> desc of the error
+stack --> where the error is occured
+
+
+ReferenceError ---> Using variable that is not defined
+TypeError --> wrong data type in operations
+SyntaxError --> wrong code structure
+RangeError --> Value Out of Range
+URIError --> Malformed URI
+
+
+try{
+
+
+}
+catch(ArithemeticException e){
+
+}
+catch(ArrayIndexOutOfBoundsException e){
+
+}
+catch(StringIndexOutOfBoundsException e){
+
+}
+catch(Exeption e){
+
+}
+
+
+classes, Objects  and Inheritance
+----------------------------------
+
+class Student{
+	String name;
+	String branch;
+	String clg;
+	// methods
+}
+
+Inheritance is the proces of acquiring the properties from one class to another class
+class which is giving properties is called base class
+class which is acquring is called derived
+
+class Box2D{
+ length = 2;
+ breadth = 3;
+ surfaceArea(){
+	console.log("The surface area is "+ (this.length * this.breadth));
+ }
+}
+
+class Box3D extends Box2D{
+	height = 4;
+	volume(){
+		console.log("The Volume is " + (this.length * this.breadth * this.height));
+	}
+}
+
+
+Asynchronous JavaScript
+------------------------
+
+console.log("hello");
+alert("Welcome");// fetching data from api 
+console.log("bye");
+
+1. Callback
+2. Promise
+3. Async / Await
+
+Callback - Passing a function to another function is called callback
+
+console.log("hello");
+setTimeout(() => {
+	alert("Window");
+},3000);
+console.log("bye");
+
+1.  API requests ( fetching data)
+2.  Reading data from files
+3.  Event listeners
+4.  Database queries
+
+
+client ------------------- request ---------------> server
+       <------------------ response ---------------
+
+response status code 
+
+
+Promise has 3 states
+
+1. Pending
+2. Resolved ( Success)
+3. Reject (error)
+
+let promise = new Promise ( (resolve,reject) => {
+setTimeout( ()=> resolve("Success"), 2000);
+});
+
+promise.then(result => console.log(result));
+
+
+sender -------------------------> recipient
+
+Pub / Sub
+
+
+Publiser <---------- subscribers
+

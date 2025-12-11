@@ -1,0 +1,293 @@
+Hooks
+-----
+
+Hooks are functions that let us change the react state and implement the life cycle from
+functional components
+
+Thread in Java
+
+Life Cycle Phases of a component
+---------------------------------
+1. Mounting --> Component is created and inserted into the DOM
+2. Updating ---> component is re rendered becuase of state change
+3. Unmounting -->component is removed from the DOm (Clean up)
+4. Error Handling --> When an error is thrown during render / lifecycle of child components
+
+
+Class ---> Only through it
+Mounting phase
+
+1. intializate the state and bind Methods --> Constructor
+2. static getDerivedStateFromProps(props,state) --> sync state from the properties
+3. render() -- return jsx
+4. componentDidMount() ---> create the dom struct and performs the side effects
+
+
+Updating Phase
+---------------
+1. static getDerivedStateFromProps(props,state)
+2. shouldComponentUpdate(nextProps, nextState) 
+3. render() --> return jsx
+4. componentDidUpdate()
+
+UnMounting
+----------
+
+componentWillUnMount()---> remove the state and comp from the DOM
+
+Error Handling
+--------------
+compnentDidCatch(error,info) ---> get the error info and return on the browser
+
+
+
+
+functions---> 
+
+1. useState()--> change the state of the component
+2. useContext() --> store the data in the context to avoid the prop drilling
+3. useEffect()  ---> 
+4. useRef()
+5. useReducer()
+6. useCallback()
+7. useMemo()
+8. custom hooks
+
+react
+
+Rules to be followed for Hooks
+------------------------------
+1. Hooks can only be applied to functional components
+2. Hooks can only be called at the top level of component
+3. Hooks cannot be conditional
+
+<component1>
+	<component2 >
+		<component3>
+
+		</component3>
+
+	</component2>
+</component1>
+	
+
+
+const [hook,setHook] = useState("")
+
+useEffect
+----------
+
+useEffect lets you run side effects in functional components after React renders the UI.
+
+side effect is anything that is outside React's pure rending 
+
+Side effects include:
+---------------------
+1. Fetching API data
+2. Setting event listeners
+3. Updating document title
+4. Working with setInterval or timers
+5. Working with browser APIs (localStorage, cookies)
+6. Cleanup (unsubscribe, cancel timers)
+
+React runs effects after the DOM is updated, not during render.
+
+Syntax
+------
+useEffect(() => {
+  // side effect logic
+});
+
+
+Note: 
+React first renders, then runs useEffect.
+useEffect never blocks rendering.
+dependencies is an array determinies when useEffect runs
+
+4 variations of useEffect
+--------------------------
+
+1. No dependency array
+useEffect(() => {
+  // side effect logic
+});
+
+Debugging reders
+updating something every time component changes
+
+
+
+2. Empty dependency array []
+useEffect(() => {
+  // side effect logic
+},[]);
+Runs once (at the time of mounting)
+
+1.fetch data once from api
+2. Add event listeners once
+3. Initialize values
+4. Run code at  startup
+
+
+3. With dependencies [state]
+useEffect(() => {
+  // side effect logic
+},[time,value]);
+runs when ever the value in the state array changes
+
+
+4. With cleanup return function
+
+
+useEffect with NO dependency array
+-----------------------------------
+import { useEffect, useState } from "react";
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("Effect ran! Count is:", count);
+  });
+
+  return (
+    <button onClick={() => setCount(count + 1)}>Increment</button>
+  );
+}
+
+
+When to use?
+--------------
+1. Rarely needed
+2. Used when you want to track all re-renders
+3. Used for debugging or animations that should run every render
+
+
+2. useEffect with EMPTY dependency array []
+--------------------------------------------
+Runs only ONCE → behaves like componentDidMount.
+useEffect(() => {
+  console.log("Component mounted!");
+
+  fetch("https://api.example.com/products")
+    .then(res => res.json())
+    .then(data => console.log(data));
+
+}, []);   // runs only once
+
+
+Use cases:
+----------
+✔ Fetch initial data
+✔ Add event listeners
+✔ Initialize a library
+✔ Run code once when a component loads
+
+3️. useEffect with dependencies [value]
+--------------------------------------
+Runs whenever DEPENDENCIES CHANGE.
+
+useEffect(() => {
+  console.log("Name changed to:", name);
+}, [name]);
+
+Example with two dependencies:
+
+useEffect(() => {
+  console.log("Either price or qty changed");
+}, [price, qty]);
+
+Use cases:
+----------
+✔ Fetch data when id changes
+✔ Recalculate values
+✔ Update title based on state
+✔ Trigger re-render of charts when data changes
+
+4. useEffect with Cleanup (return function)
+-------------------------------------------
+Cleanup runs:
+
+-> When the component unmounts
+-> Before running the effect again (if dependencies changed)
+
+Example: Event Listener
+useEffect(() => {
+  function handleResize() {
+    console.log("Window resized");
+  }
+
+  window.addEventListener("resize", handleResize);
+
+  return () => {
+    console.log("Cleanup: removing listener");
+    window.removeEventListener("resize", handleResize);
+  };
+}, []);
+
+Example: Timer Cleanup
+----------------------
+useEffect(() => {
+  const id = setInterval(() => {
+    console.log("Tick...");
+  }, 1000);
+
+  return () => clearInterval(id);
+}, []);
+
+useContext
+-----------
+It is hootk in react, used to store and consume the values between the component
+using a context.
+
+<Component1>
+	<Component2 name="Praveen" />
+</component1>
+
+
+<component2>
+	<Component3 name="Praveen">
+
+</component2>
+
+<component3 >
+
+	//processing th  name
+
+</component3>
+
+
+App ---> ComponentB ----> ComponentC (Property Drilling)
+
+
+
+Global Variables
+
+Local Variables
+
+
+int no=10;
+flat z =3.14;
+
+void f1(){
+
+no= no++;
+}
+
+f2();
+
+void f2(){
+
+
+
+}
+
+
+1. C1, C2, C3, C4,....C10
+2. Authencation
+3. Localization
+4. Cart 
+
+
+const MesageContext = createContext("")
+export default MessageContext;

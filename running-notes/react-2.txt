@@ -1,0 +1,139 @@
+
+
+Promises 
+
+1. Resolved
+2. pending ---> processing
+3. Error  ---> error 
+
+async await
+
+
+React
+-----
+
+UI <----->BL <--------> DB
+
+UI -----> HTML, CSS, JavaScript
+
+When the more of pages----> peformacne is degreaded
+when ever there is modification ---> will render the complete page
+
+<h2 style="color:blue">Heading</h2>
+
+
+
+Monolithic ----> 
+
+Microservices -->
+CreditCard
+Loans
+Savings
+
+
+SPA ---> Single Page Applications ---> Components
+
+
+React --> JavaScript based library for developing the SPA
+
+1. Library
+2. Virtual DOM
+3. Reusable Components
+4. One Way Binding
+
+
+
+Vite
+
+To create a react application
+
+npm create vite@latest demo -- --template react --no-questions
+
+
+cd demo
+c:/demo> npm install 
+c:/demo> npm run dev
+
+Components are created in
+
+1.Functional
+2. Class
+
+
+JSX 
+----
+JavaScript XML --> 
+
+JSX -->it is a special syntax used in react to simply building UI
+
+JSX allows us to write the html like code to directly inside the js
+
+const element = <h1>Hello, World..!</h1>
+
+
+function Test(){
+
+	
+	const element = <h1>Hello, World..!</h1>
+	return element;
+}
+
+JSX get transformed to JS  ---> Babel
+
+
+const element = React.createElement('h1',null, 'Hello, World..!');
+
+window.addElement(element)
+
+
+
+Hooks --> Functional all life cycle methods 
+
+
+
+
+
+App component ---> Mother component or Base component
+
+
+Props Vs State
+
+props --> read only inputs that a data is passed from parent component to child component
+
+
+function add(int a, int b)
+	// processing
+
+}
+
+add(10,20);
+
+
+<html>
+<body>
+	<p></>
+	<h2> </h2>
+	<ul>
+		<li> </li>
+		<li> </li>
+	</ul>
+
+</body>
+
+
+</html
+
+VDOM is a light wegiht JS rep for the real dom in react
+
+
+VIRTUAL DOm
+
+1. Component is rendered --> create a virtual DOM
+2.  When the state change occurs in any component --> It will create a new Virtual DOM in memory
+
+3. React compares the new dom with old dom (Diffing algorithm)
+
+4. REact updates only that component which are modified ( Reconciliation)
+
+5. update the virutal dom
+

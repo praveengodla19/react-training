@@ -1,0 +1,179 @@
+Methods in JavaScript
+---------------------
+
+A method is a function stored inside an object
+
+let person= {
+	name:"Praveen",
+	city:"Hyderabad",
+	greet : function(){
+		var name = "Kumar"
+		console.log("Hello Welcome", this.name);
+	}
+}
+
+Two ways of declaring a method in js
+
+Traditional Syntax
+
+methodname = function(){
+	body of the functon
+}
+
+Shorthand ES6 syntax
+
+funtionName(){
+	body of the funciton
+}
+
+greet(){
+		var name = "Kumar"
+		console.log("Hello Welcome", this.name);
+	}
+
+
+user.greet();
+
+
+Arrays
+------
+It is a special type of object used to store multiple values in a single variable
+
+let numbers = [10,20,30,40]
+
+Array can store --> numbers, strings, booleans, objects, even other arrays or combination of anyvalid 
+datatype
+
+Ways of creating an array
+-------------------------
+1. square brackets
+
+let fruits = ["banana","cherry","grapes"]
+
+2. new Array() method
+ let marks = new Array(80,75,89);
+
+3. empty array and push values later
+
+  let items = []
+  items.push("mobiles");-->0
+  items.push("charges");-->1
+
+fruits[0], marks[1], items[2]
+
+4. length of an array --> length
+    fruits.length ---> 3
+    marks.length ---> 3
+    items.length --> 2
+
+
+Iterations
+-----------
+1. simple for loop
+
+ 
+for (let i=0;i<fruits.length;i++){
+	console.log(fruits[i]);
+}
+
+
+2. for of loop (recommended)
+
+for (let fruit of fruits){
+	console.log(fruit)
+}
+
+
+3. forEach()
+
+items.forEach( (item,index)=> {
+	console.log(index,item
+});
+
+Methods
+--------
+1. push()--> push an eleemtn at end
+2. pop() --> remove last element
+3. unshift() --> add at begining
+4. shift() ---> remove first
+5. indexOf()---> index of given value
+6. includes() --> check the given value is present in array or not
+7. map()---> perform
+8. filter()
+9. reduce()
+10. find()
+
+
+Arrow functions
+---------------
+Shorter functions 
+
+function add(a,b){
+	return a+b;
+}
+
+function display() {
+	console.log("Hello welcome")
+)
+
+Arrow Method are good when:
+1. short functions
+2. Callbacks
+3. Arraymethods- map(), filter(), reduce(), find()
+
+
+
+nos = [1,2,3,4,5]
+evenos = nos.filter( n => n%2 === 0)
+console.log(evenos)
+
+
+squares = [1,4,9,16,25]
+
+data = []
+for (x in nos){
+
+	data.append(x*x);
+}
+
+squares = nos.map(n => n*n )
+console.log(squares)
+
+reduce - It is an array method used to combine all elements of an array into a single result.
+
+Sytax:
+
+array.reduce( (accumulator,currentvalue) => {
+			// logic to perform
+			return accumulator;
+		}, initialValue);
+
+nos = {10,20,30,40}
+
+
+sum = 0
+for (x in nos){
+	sum = sum +x;
+}
+
+nos.reduce( (acc,value) => acc + value, 0)
+
+Destructing Arrays and Objects
+-----------------------------
+
+let numbers = [1,2,3]
+let a = numbers[0]
+let b = numbers[1]
+let c = numbers[2]
+let [a,b,c] = numbers
+
+Spread Operators
+------------------
+They are used to exapand(spread) array or object values
+Mainly for copying and passing values
+
+1. 
+
+
+
+

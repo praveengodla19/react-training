@@ -1,0 +1,187 @@
+React State
+-----------
+Props - Properties are the immutable objects that are passed from a parent to child
+They are used for communication from one component to another component.
+
+
+In React, the state refers to an object that holds information about a component's 
+current situation. 
+
+
+class Car{
+	String model;
+	String color;
+	String company;
+	Car(Strin model, String color, Sting copmpany)
+	{
+		//assign values;
+	}
+	//methos
+}
+
+Car c1 = new Car("2025","blue","Tata");
+Car c2 = new Car("2024","Grey","Hynduai");
+
+	
+
+This information can change over time, typically as a result of user actions or data fetching, 
+and when state changes, React re-renders the component to reflect the updated UI.
+
+Whenever state changes, React re-renders the component to reflect the updated data. 
+
+This enables you to build dynamic UIs that respond to user interactions.
+
+Syntax
+---------
+const [state, setState] = useState(initialState);
+
+const [color, setColor]= useState("blue");
+const [model, setModel]=useState("2025")
+
+const[username, setUsername] = useState("");
+const[password, setPassword]= useState("");
+
+setUsername(e.target.value);
+setPassword(e.target.value);
+
+
+setColor("green")
+
+where:
+
+state: The current state value.
+
+setState: A function that is used to update the state.
+
+initialState: The initial value that the state will hold when the component is first rendered.
+
+
+State vs Props
+---------------
+While both state and props store data in React, they serve different purposes:
+
+State: Managed within the component, mutable, and used to store dynamic data that changes 
+over time.
+
+Props: Passed from a parent component to a child component, immutable, and used to share 
+data between components.
+
+Example
+-------
+
+import React from 'react';
+
+class MyComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            brand: 'Ford', // Example property in the state
+	    username:' ',
+	    password:' '
+        };
+    }
+
+    render() {
+        return (
+            <div>
+                <h1>My Car {this.state.brand}</h1>
+                {/* Other component content */}
+            </div>
+        );
+    }
+}
+
+export default MyComponent;
+
+
+Updating the React State
+-------------------------
+// Filename - index.js
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            count: 0,
+	    flag:false
+        };
+    }
+
+    increment = () => {
+        this.setState((prevState) => ({
+            count: prevState.count + 1,
+	    flag: true
+        }));
+    };
+
+    decrement = () => {
+        this.setState((prevState) => ({
+            count: prevState.count - 1,
+        }));
+    };
+
+    render() {
+        return (
+            <div>
+                <h1>
+                    The current count is :{" "}
+                    {this.state.count}
+                </h1>
+                <button onClick={this.increment}>
+                    Increase
+                </button>
+                <button onClick={this.decrement}>
+                    Decrease
+                </button>
+            </div>
+        );
+    }
+}
+
+const root = ReactDOM.createRoot(
+    document.getElementById("root")
+);
+root.render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
+);
+
+
+Condtional Rendering
+--------------------
+CR means showing or hiding UI parts based on acondition
+
+Methods of Conditional Rendering
+--------------------------------
+1. if/Else 
+
+2. Element Variables
+
+3. Ternary Operator
+
+4. Short-Circuit
+
+5. Switch Statement
+
+6. Returning null values
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
