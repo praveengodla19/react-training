@@ -45,10 +45,19 @@ compnentDidCatch(error,info) ---> get the error info and return on the browser
 functions---> 
 
 1. useState()--> change the state of the component
+
+const [color,setColor]=useState("blue")
+
+
 2. useContext() --> store the data in the context to avoid the prop drilling
+
+A ---> B -----> C ---> D
+
+
 3. useEffect()  ---> 
+
 4. useRef()
-5. useReducer()
+5. useReducer()  --> Redux
 6. useCallback()
 7. useMemo()
 8. custom hooks

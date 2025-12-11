@@ -1,0 +1,197 @@
+
+
+
+useRef()
+-------
+The useRef Hook allows you to persist values between renders.
+
+It can be used to store a mutable value that does not cause a re-render when updated.
+
+It can be used to access a DOM element directly.
+
+
+useRef() only returns one item. It returns an Object called current.
+
+When we initialize useRef we set the initial value: useRef(0).
+
+current
+
+useMemo() and useCallback()
+---------------------------
+The React useMemo Hook returns a memoized value.
+
+Think of memoization as caching a value so that it does not need to be recalculated.
+
+The useMemo Hook only runs when one of its dependencies update.
+
+This can improve performance.
+
+The useMemo and useCallback Hooks are similar:
+
+useMemo returns a memoized value.
+
+useCallback returns a memoized function.
+
+
+Without useMemo
+---------------
+The useMemo Hook can be used to keep expensive, resource intensive functions from needlessly running.
+
+In this example, we have an expensive function that runs on every render.
+
+When changing the count or adding a todo, you will notice a delay in execution.
+
+useCallback()
+--------------
+
+The useCallback Hook is used to memoize a callback function.
+
+Memoizing a function means caching the result of a function so that it does not need to be recalculated.
+
+The useCallback function only re-executes when one of its dependencies changes value.
+
+This allows us to isolate resource intensive functions so that they will not automatically run on every render.
+
+The useCallback and useMemo Hooks are similar:
+
+useMemo returns a memoized value.
+
+useCallback returns a memoized function.
+
+[1,2,3,.............9999,10,000]---> search keyword -->9999-->value is returned
+
+function App(){
+	const handleClick =()=>console.log("clicked");
+}
+
+String str1 =  "Hello";
+String str12 = "Hello";
+
+const [count,setCount]=useState(0);-->1
+const handleInc = useCallback ( ()=> {
+	setCount(c=>c+1);
+},[])
+
+return(
+	<>
+		<p>count: {count}
+		<button onClick={handleInc} >Increment </button>
+	</>
+);
+
+custom Hooks
+-------------
+
+import { useState, useEffect } from 'react';
+import { createRoot } from 'react-dom/client';
+
+const Home = () => {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/todos")
+      .then((res) => res.json())
+      .then((data) => setData(data));
+ }, []);
+
+  return (
+    <>
+      {data &&
+        data.map((item) => {
+          return <p key={item.id}>{item.title}</p>;
+        })}
+    </>
+  );
+};
+
+createRoot(document.getElementById('root')).render(
+  <Home />
+);
+
+
+with custom hook
+-----------------
+
+create useFetch.js
+
+import { useState, useEffect } from "react";
+
+const useFetch = (url) => {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  }, [url]);
+
+  return [data];
+};
+
+export default useFetch;
+
+now main.jsx is updated as below
+--------------------------------
+import { createRoot } from 'react-dom/client';
+import useFetch from "./useFetch";
+
+const Home = () => {
+  const [data] = useFetch("https://jsonplaceholder.typicode.com/todos");
+
+  return (
+    <>
+      {data &&
+        data.map((item) => {
+          return <p key={item.id}>{item.title}</p>;
+        })}
+    </>
+  );
+};
+
+createRoot(document.getElementById('root')).render(
+  <Home />
+);
+
+
+
+
+useState()
+useEffect()
+useContext()
+useRef()
+useMemo()
+useCallback()
+
+useReducer() --> Redux
+useNavigation() ---> Routing
+
+Custom Hook ---> user defined hook
+
+
+1. custom Hook
+2. life cycle simulation using hooks -->useEffect()
+
+3. Routing
+
+
+components ---> Login, Display, Add Product, Search
+
+Routers -- React router lib that provides routing cap to react applications
+routing means navigation between the components(views)
+
+npm install react-router-dom
+
+<a href="index.html">click here</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
