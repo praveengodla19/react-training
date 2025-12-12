@@ -1,0 +1,442 @@
+Axios
+-----
+
+Axios is a promise-based HTTP client for JavaScript, which is used to make HTTP requests 
+to fetch or send data to a server. 
+
+It simplifies the process of handling requests by providing a cleaner API, better error handling, 
+and support for features like request/response interceptors, cancellation, and more. 
+
+It is also fully compatible with modern browsers and can be used in both the browser and NodeJS environments.
+
+Key Features of Axios
+---------------------
+1. Promise-based API.
+2. Works in both NodeJS and browsers.
+3. Automatically transforms JSON data.
+4. Supports request and response interceptors.
+5. Allows easy handling of timeouts and cancellation of requests.
+6. Supports making GET, POST, PUT, DELETE, and other HTTP requests.
+
+Step 1: Install Axios
+npm install axios
+
+Step 2: Import Axios into Your Component
+import axios from 'axios';
+
+Step 3: Add Axios as Dependency
+npm i axios
+
+
+Key Advantages of axios
+-------------------------
+
+1. Axios has a very clean and easy-to-read syntax:
+
+   axios.get('/users') // get(), post(), put(), delete(),patch()
+
+   axios.get("http://localhost:8080/api/products/");
+   axios.post(url,data)
+
+   request --> get  /
+
+
+2. Axios automatically converts JSON response to JS object, where as fetch requies response.json()
+
+3. Request & Response Interceptors
+
+   You can modify:
+
+		Request → (ex: adding JWT token)
+
+		Response → (ex: centralized error handling)
+
+   Before it goes to .then() or .catch().
+
+4. Supports Timeout
+   axios.get('/api', { timeout: 5000 })
+
+5. Better Error Handling
+   Axios gives proper error.response, error.request, error.message
+
+6. Works on Older Browsers To new
+
+
+Axios Basic Syntax
+------------------
+axios.get(url)
+axios.post(url, data)
+axios.put(url, data)
+axios.delete(url)
+axios.patch(url, data)
+
+
+1. GET Request (Fetch data)
+----------------------------
+axios.get('https://jsonplaceholder.typicode.com/users')
+  .then(response => {
+    console.log("DATA =", response.data);
+  })
+  .catch(error => {
+    console.log("ERROR =", error);
+  });
+
+2. POST Request (Send data)
+---------------------------
+axios.post('https://jsonplaceholder.typicode.com/posts', {
+    title: 'React Training',
+    body: 'Axios Example',
+    userId: 1
+})
+.then(res => console.log(res.data))
+.catch(err => console.log(err));
+
+
+3. PUT Request (Update all fields)
+-----------------------------------
+axios.put('https://jsonplaceholder.typicode.com/posts/1', {
+  title: 'Updated Title',
+  body: 'Updated Body',
+  userId: 10
+});
+
+
+4. DELETE Request
+-----------------
+axios.delete('https://jsonplaceholder.typicode.com/posts/1')
+  .then(() => console.log("Deleted"))
+  .catch(err => console.log(err));
+
+
+Axios Response Structure
+-------------------------
+The response object looks like this:
+{
+  "data": {},           // actual response data
+  "status": 200,        // HTTP status code
+  "statusText": "OK",
+  "headers": {},
+  "config": {},
+  "request": {}
+}
+
+
+
+JWT Authentication with Axios
+-----------------------------
+Adding Token for every request:
+axios.interceptors.request.use(config => {
+  config.headers.Authorization = "Bearer " + localStorage.getItem("token");
+  return config;
+});
+
+
+Global Response Error Handling
+-------------------------------
+axios.interceptors.response.use(
+  response => response,
+  error => {
+    if (error.response.status === 401) {
+      window.location = "/login";
+    }
+    return Promise.reject(error);
+  }
+);
+
+
+Axios with Custom Instance (BEST PRACTICE)
+-------------------------------------------
+Instead of writing the full API URL everywhere:
+
+const api = axios.create({
+  baseURL: "https://jsonplaceholder.typicode.com/posts/",
+  timeout: 5000
+});
+
+api.get('/');
+api.post('/', product);
+api.put('/' + product.id, product);
+api.delete('/' + id);
+
+
+// productService.js
+----------------------
+import axios from "axios";
+
+const BASE_URL = "http://localhost:8081/product";
+
+export const getProducts = () => axios.get(BASE_URL);
+
+export const addProduct = (product) => axios.post(BASE_URL, product);
+
+export const deleteProduct = (id) => axios.delete(`${BASE_URL}/${id}`);
+
+export const updateProduct = (id, product) =>
+  axios.put(`${BASE_URL}/${id}`, product);
+
+
+
+Redux
+-----
+Redux is a state management library used mainly with React (but can be used with Angular, Vue, or 
+vanilla JS as well).
+
+Redux helps you manage application-wide state in a predictable way.
+
+A simple explanation:
+
+Redux = A single place (store) where entire application state is stored and updated in a controlled manner.
+
+
+Why Redux?
+----------
+React’s built-in state works well for small apps, but becomes difficult when:
+
+1. Many components need the same data
+
+2. Data needs to travel deeply through multiple components
+
+3. You have complex updates
+
+4. You want predictable debugging
+
+
+The 3 Principles of Redux
+--------------------------
+1️. Single Source of Truth
+All application state is stored in one store.
+
+2️. State is Read-Only
+You cannot directly modify the state.
+Only dispatch actions.
+
+3️. Changes are made with Pure Reducers
+A reducer is a pure function that takes state + action and returns new state.
+
+
+<diagram>
+UI triggers → dispatch(action)
+
+Action goes to reducer()
+
+Reducer returns new state
+
+Redux Store updates → UI re-renders
+
+
+Redux Core Concepts
+1. STORE
+------------
+The central container holding the application state.
+
+import { createStore } from 'redux';
+const store = createStore(reducer);
+
+
+2. STATE
+--------
+A JavaScript object representing the application data.
+
+Example:
+
+{
+  count: 0,
+  products: []
+}
+
+
+3. ACTION
+----------
+A plain object describing WHAT happened.
+
+{ type: 'INCREMENT' }
+{ type: 'ADD_PRODUCT', payload: { id: 1, name: 'Pen' } }
+
+
+Actions always contain:
+
+type (required)
+
+payload (optional)
+
+
+4. REDUCER
+------------
+A pure function.
+
+function reducer(state, action) {
+  return newState;
+}
+
+
+Example
+-------
+function counterReducer(state = { count: 0 }, action) {
+  switch (action.type) {
+    case 'INCREMENT':
+      return { count: state.count + 1 };
+
+    case 'DECREMENT':
+      return { count: state.count - 1 };
+
+    default:
+      return state;
+  }
+}
+
+
+
+5. DISPATCH
+------------
+Used to send actions to the store.
+
+store.dispatch({ type: 'INCREMENT' });
+
+
+Complete Basic Redux Example (Without React)
+--------------------------------------------
+
+Step 1: Define Reducer
+function counterReducer(state = { count: 0 }, action) {
+  switch (action.type) {
+    case "INCREMENT":
+      return { count: state.count + 1 };
+
+    case "DECREMENT":
+      return { count: state.count - 1 };
+
+    default:
+      return state;
+  }
+}
+
+
+Step 2: Create Store
+import { createStore } from 'redux';
+
+const store = createStore(counterReducer);
+
+
+Step 3: Subscribe to store updates
+store.subscribe(() => {
+  console.log("State =", store.getState());
+});
+
+
+Step 4: Dispatch actions
+store.dispatch({ type: "INCREMENT" });
+store.dispatch({ type: "INCREMENT" });
+store.dispatch({ type: "DECREMENT" });
+
+
+
+Using Redux with React (Modern Redux Toolkit)
+----------------------------------------------
+Redux Toolkit (RTK) is the recommended standard for Redux.
+
+It simplifies everything:
+
+✔ Less boilerplate
+✔ Easy reducers
+✔ Built-in immutability
+✔ Thunks for async logic
+
+
+Example Redux Toolkit Counter
+
+1. Install Redux Toolkit
+npm install @reduxjs/toolkit react-redux
+
+2. Create a Slice
+// counterSlice.js
+import { createSlice } from '@reduxjs/toolkit';
+
+const counterSlice = createSlice({
+  name: 'counter',
+  initialState: { count: 0 },
+  reducers: {
+    increment: state => { state.count++ },
+    decrement: state => { state.count-- },
+    addBy: (state, action) => { state.count += action.payload }
+  }
+});
+
+
+3. Configure Store
+// store.js
+import { configureStore } from '@reduxjs/toolkit';
+import counterReducer from './counterSlice';
+
+export const store = configureStore({
+  reducer: { counter: counterReducer },
+});
+
+
+4. Wrap App with Provider
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { store } from "./store";
+import App from "./App";
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
+
+
+5. Use Redux in Component
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement, addBy } from "./counterSlice";
+
+export default function Counter() {
+  const count = useSelector(state => state.counter.count);
+  const dispatch = useDispatch();
+
+  return (
+    <div>
+      <h2>Count: {count}</h2>
+
+      <button onClick={() => dispatch(increment())}>+</button>
+      <button onClick={() => dispatch(decrement())}>−</button>
+      <button onClick={() => dispatch(addBy(5))}>Add +5</button>
+    </div>
+  );
+}
+
+
+Redux for Product CRUD Example (Simple Slice)
+---------------------------------------------
+A slice for product management:
+--------------------------------
+import { createSlice } from "@reduxjs/toolkit";
+
+const productSlice = createSlice({
+  name: "products",
+  initialState: [],
+  reducers: {
+    addProduct: (state, action) => {
+      state.push(action.payload);
+    },
+    deleteProduct: (state, action) => {
+      return state.filter(p => p.id !== action.payload);
+    },
+    updateProduct: (state, action) => {
+      const index = state.findIndex(p => p.id === action.payload.id);
+      state[index] = action.payload;
+    }
+  }
+});
+
+Redux Thunk (For API Calls)
+---------------------------
+To call backend APIs:
+
+export const fetchProducts = () => async (dispatch) => {
+  const res = await axios.get("/products");
+  dispatch(loadProducts(res.data));
+};
+
