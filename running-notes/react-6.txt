@@ -188,6 +188,125 @@ A simple explanation:
 Redux = A single place (store) where entire application state is stored and updated in a controlled manner.
 
 
+Why do we need Redux
+---------------------
+
+1. React state works only inside a component
+
+But what if:
+
+Component A needs to share data with Component D?
+Component B needs to update data in Component F?
+
+React forces you to lift state up and pass props down — this gets messy quickly…
+
+❌ Problem:
+
+Too many props
+
+Long prop chains (prop drilling)
+
+Hard to manage when app grows
+
+Redux solves it by giving one central place for state.
+
+
+
+✅ 2. Prop Drilling Becomes Unmanageable
+
+Example:
+
+App → Component A → Component B → Component C → Component D
+
+
+If D needs some state, App must pass it through A → B → C → D, even though A, B, C don’t use it.
+
+This is called prop drilling — the biggest reason Redux is used.
+
+Redux Solution:
+
+Any component can directly read/write the store.
+No need for intermediate props.
+
+
+
+✅ 3. Many Components Need the Same Data
+
+Example: Product list
+
+Cart component needs the products
+
+Filters component needs the products
+
+Sidebar needs the products
+
+Dashboard needs product count
+
+React state cannot easily synchronize data between many components.
+
+Redux gives:
+
+✔ A single source of truth
+✔ Easy global sharing
+
+
+
+✅ 4. Complex State Logic Is Hard to Maintain
+
+Consider apps with:
+
+Authentication
+
+User roles
+
+Shopping cart
+
+Filters & sorting
+
+Notifications
+
+Forms
+
+API caching
+
+The logic becomes spread across multiple components.
+
+Redux centralizes the logic in reducers + actions making it predictable.
+
+
+
+✅ 5. Debugging Becomes Difficult Without Redux
+
+Redux DevTools allows:
+
+✔ View all actions
+✔ View previous state and next state
+✔ Time-travel debugging
+✔ Replay bugs
+
+This makes huge applications much easier to debug.
+
+
+
+
+✅ 6. API Calls Need Organized Handling
+
+Apps dealing with APIs need to handle:
+
+loading
+
+success
+
+error
+
+caching
+
+refreshing
+
+Redux Toolkit + Thunks makes async logic extremely clean and well organized.
+
+
+
 Why Redux?
 ----------
 React’s built-in state works well for small apps, but becomes difficult when:
