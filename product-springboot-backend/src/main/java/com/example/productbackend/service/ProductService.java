@@ -20,7 +20,7 @@ public class ProductService {
         return repo.findAll();
     }
 
-    public Optional<Product> getById(Long id) {
+    public Optional<Product> getById(String id) {
         return repo.findById(id);
     }
 
@@ -31,7 +31,7 @@ public class ProductService {
         return repo.save(product);
     }
 
-    public Product update(Long id, Product product) {
+    public Product update(String id, Product product) {
         if (!repo.existsById(id)) {
             throw new IllegalArgumentException("Product not found");
         }
@@ -39,7 +39,7 @@ public class ProductService {
         return repo.save(product);
     }
 
-    public void delete(Long id) {
+    public void delete(String id) {
         if (!repo.existsById(id)) {
             throw new IllegalArgumentException("Product not found");
         }
@@ -49,9 +49,9 @@ public class ProductService {
     public List<Product> resetDefaults() {
         repo.deleteAll();
         repo.saveAll(List.of(
-            new Product(101L, "Laptop", 10, 50000.0),
-            new Product(102L, "Mouse", 25, 500.0),
-            new Product(103L, "Keyboard", 15, 1200.0)
+            new Product("101", "Laptop", 10, 50000.0),
+            new Product("102", "Mouse", 25, 500.0),
+            new Product("103", "Keyboard", 15, 1200.0)
         ));
         return repo.findAll();
     }

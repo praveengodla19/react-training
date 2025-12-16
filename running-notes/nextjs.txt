@@ -1,0 +1,100 @@
+What is Next.js?
+
+Next.js is a React framework for building fast, SEO-friendly, production-ready web applications.
+
+Think of it as:
+React + Routing + Rendering + Backend APIs + Performance
+
+
+Why Next.js? (Why React Alone Is Not Enough)
+Problems with plain React (CSR only)
+
+❌ Poor SEO
+❌ Slow initial page load
+❌ Manual routing setup
+❌ Needs separate backend for APIs
+
+Next.js solves this by providing:
+
+✔ Server-Side Rendering (SSR)
+✔ Static Site Generation (SSG)
+✔ File-based routing
+✔ API routes (backend inside frontend)
+✔ Image & performance optimization
+
+
+Next.js vs React (Interview Table)
+Feature			React			Next.js
+Rendering		CSR only		CSR + SSR + SSG
+Routing			React Router		File-based
+SEO			Weak			Excellent
+Backend APIs		External		Built-in
+Performance		Good			Excellent
+Production ready	Needs setup		Out of the box
+
+
+
+How nextjs works ?
+-----------------
+
+<diagram>
+
+Request flow:
+
+Browser requests a page
+
+Next.js decides:
+
+Static (SSG)
+
+Server render (SSR)
+
+Client render (CSR)
+
+HTML is sent to browser
+
+Page becomes interactive (hydration)
+
+
+Installing Next.js
+------------------
+Create a new project
+npx create-next-app@latest my-app
+cd my-app
+npm run dev
+
+
+Open:
+
+http://localhost:3000
+
+
+
+Next.js Project Structure (App Router – Next.js 13+)
+app/
+ ├── layout.js      → common layout
+ ├── page.js        → home page
+ ├── loading.js     → loading UI
+ ├── error.js       → error UI
+ ├── not-found.js   → 404 page
+ ├── products/
+ │    └── page.js
+ └── api/
+      └── users/
+           └── route.js
+public/
+
+
+
+Pages & Routing (File-Based Routing)
+------------------------------------
+
+Home.js
+
+// app/page.js
+export default function Home() {
+  return <h1>Welcome to Next.js</h1>
+}
+
+
+

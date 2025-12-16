@@ -178,6 +178,7 @@ export const updateProduct = (id, product) =>
 
 Redux
 -----
+
 Redux is a state management library used mainly with React (but can be used with Angular, Vue, or 
 vanilla JS as well).
 
@@ -202,7 +203,7 @@ React forces you to lift state up and pass props down — this gets messy quickl
 
 ❌ Problem:
 
-Too many props
+Too many props  A ---> B ---> C ---> D
 
 Long prop chains (prop drilling)
 
@@ -344,6 +345,7 @@ Redux Store updates → UI re-renders
 
 
 Redux Core Concepts
+--------------------
 1. STORE
 ------------
 The central container holding the application state.

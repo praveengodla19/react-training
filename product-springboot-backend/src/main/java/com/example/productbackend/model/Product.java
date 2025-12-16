@@ -12,7 +12,7 @@ import jakarta.validation.constraints.NotNull;
 public class Product {
 
     @Id
-    private Long productId;
+    private String productId;
 
     @NotBlank
     private String name;
@@ -27,15 +27,15 @@ public class Product {
 
     public Product() {}
 
-    public Product(Long productId, String name, Integer quantity, Double price) {
+    public Product(String productId, String name, Integer quantity, Double price) {
         this.productId = productId;
         this.name = name;
         this.quantity = quantity;
         this.price = price;
     }
 
-    public Long getProductId() { return productId; }
-    public void setProductId(Long productId) { this.productId = productId; }
+    public String getProductId() { return productId; }
+    public void setProductId(String productId) { this.productId = productId; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
     public Integer getQuantity() { return quantity; }
